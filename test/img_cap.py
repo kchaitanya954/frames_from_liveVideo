@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Apr 24 12:25:11 2021
-
 @author: chaitanya
 """
 
@@ -11,7 +10,7 @@ import pafy
 import os
 from datetime import datetime
 import sys
-directory = '/home/chaitanya/Documents/Bid data/project/test'
+# directory = '/home/chaitanya/Documents/Bid data/project/test'
 
 class frames:
     def __init__(self, source_url, quality = False):
@@ -38,7 +37,7 @@ class frames:
                 time = str(datetime.now())
                 name = channelName + '_' + time + '_' + str(img_count) + '.jpg'
                 print('Creating...' + name)
-                os.chdir(directory)
+                # os.chdir(directory)
                 cv2.imwrite(name, frame)
                 img_count += 1
         vid.release()
@@ -48,7 +47,7 @@ class frames:
         vid = cv2.VideoCapture(self.url)
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
         out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
-        os.chdir(directory)
+        # os.chdir(directory)
         while (vid.isOpened()):
             check, frame = vid.read()
             if check:
@@ -63,7 +62,7 @@ class frames:
 if __name__ == '__main__':
     try:
         url = 'https://www.youtube.com/watch?v=UUxkVYP36gA&ab_channel=AajTak'
-        video = frames()
+        video = frames(url)
         video.saveFrames()
     except KeyboardInterrupt:
         print('Interrupted')
