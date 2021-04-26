@@ -24,7 +24,7 @@ class frames:
 
         self.url = self.play.url
 
-    def saveFrames(self, n=5):
+    def saveFrames(self, n=5, channelName='channel'):
         vid = cv2.VideoCapture(self.url)
         fps = int(vid.get(cv2.CAP_PROP_FPS))
         frame_number = 0
@@ -36,7 +36,7 @@ class frames:
             check, frame = vid.read()
             if check:
                 time = str(datetime.now())
-                name = time + '_' + str(img_count) + '.jpg'
+                name = channelName + '_' + time + '_' + str(img_count) + '.jpg'
                 print('Creating...' + name)
                 os.chdir(directory)
                 cv2.imwrite(name, frame)
